@@ -1,0 +1,64 @@
+.main {
+  padding: 1.2rem;
+  background: #222327;
+  height: 81%;
+  width: 73%;
+  border-radius: 15px;
+
+  right: 5%;
+  top: 8%;
+  color: white;
+  & input {
+    position: relative;
+    right: 0;
+    background: #222327;
+    border: 1px solid white;
+    color: white;
+    border-radius: 15px;
+    height: 3rem;
+    padding-left: 1.3rem;
+    font-size: 0.9rem;
+
+    width: 90%;
+  }
+  & p {
+    font-family: poppins;
+  }
+  & .ans_box {
+    display: flex;
+    flex-direction: column;
+    border-radius: 15px;
+    background: #000000;
+    min-height: 88%;
+    color: white;
+    & .msg_bubble {
+      display: inline;
+      background: #9681eb;
+      padding: 10px;
+      margin-bottom: 10px;
+      border-radius: 5px;
+    }
+    & .answer_bubble {
+      display: inline;
+      background: #176b87;
+      padding: 10px;
+      margin-bottom: 10px;
+      border-radius: 5px;
+    }
+  }
+  & .msg_main_div {
+    margin: 1rem;
+    display: flex;
+    gap: 1.2rem;
+    justify-content: center;
+    align-items: center;
+
+    & .div_send_btn_container {
+      color: #52525b;
+    }
+    & .div_send_btn_container_2 {
+      color: #a2c0f0;
+      cursor: pointer;
+    }
+  }
+}
