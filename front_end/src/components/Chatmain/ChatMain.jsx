@@ -1,6 +1,10 @@
 import { React, useReducer } from "react";
 import styles from "./Chatmain.module.css";
-import { AddCircleOutline, Send } from "@mui/icons-material";
+import {
+  AccountCircleRounded,
+  AddCircleOutline,
+  Send,
+} from "@mui/icons-material";
 import { INITIAL_STATE, chatReducer, ACTIONS } from "./reducers/Chatreducer";
 
 export default function ChatMain() {
@@ -39,14 +43,33 @@ export default function ChatMain() {
           {state.msg.length > 0 &&
             state.msg.map((val, index) => (
               <div
-                style={{ display: "flex", flexDirection: "column",gap:"2rem" }}
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "2rem",
+                }}
                 key={`msg_${index}`}
               >
-                <div style={{border:"1p xsolid red"}}>
+                <div style={{ border: "1p xsolid red" }}>
                   <span className={styles.msg_bubble}>{val.question}</span>
                 </div>
-                <div>
-                  <span className={styles.answer_bubble}>{val.answer}</span>
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "flex-end",
+                    flexDirection: "column",
+                  }}
+                >
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "5px",
+                    }}
+                  >
+                    <span className={styles.answer_bubble}>{val.answer}</span>
+                    <AccountCircleRounded />
+                  </div>
                 </div>
               </div>
             ))}
