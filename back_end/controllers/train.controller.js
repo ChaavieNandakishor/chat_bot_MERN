@@ -1,39 +1,39 @@
-const User = require("../models/user.model");
+const Train = require("../models/train.model");
 
 const train = async (req, res) => {
-    try {
-      const { user_id, user_name } = req.body;
-  
-      if (!user_id || !user_name) {
-        return res.status(400).json({
-          error: true,
-          success: false,
-          message: "user_id and user_name are required fields.",
-        });
-      }
-  
-      const userData = {
-        user_id,
-        user_name,
-      };
-  
-      const cartDetails = new User(userData);
-      await cartDetails.save();
-  
-      res.status(200).json({
-        success: true,
-        error: false,
-        message: "Details added.",
-      });
-    } catch (error) {
-      console.log("error >>", error);
-      res.status(500).json({
-        success: false,
+  try {
+    const { question, answer } = req.body;
+
+    if (!question || !answer) {
+      return res.status(400).json({
         error: true,
-        message: "An error occurred while saving the user details.",
+        success: false,
+        message: "fields are required!!",
       });
     }
-  };
+
+    const trainData = {
+      question,
+      answer,
+    };
+
+    const trainDetails = new Train(trainData);
+    await trainDetails.save();
+
+    res.status(200).json({
+      success: true,
+      error: false,
+      message: "Question answer added.",
+    });
+  } catch (error) {
+    console.log("error >>", error);
+    res.status(500).json({
+      success: false,
+      error: true,
+      message: "An error occurred while saving the user details.",
+    });
+  }
+};
 
 module.exports = {
   train,

@@ -6,25 +6,30 @@ import { INITIAL_STATE, chatReducer, ACTIONS } from "./reducers/Chatreducer";
 export default function ChatMain() {
   const [state, dispatch] = useReducer(chatReducer, INITIAL_STATE);
 
-  const handleSendmsg = (e) => {
+  const handleMsgChange = (e) => {
+    console.log(e);
     dispatch({
       type: ACTIONS.INPUT_BOX_VALUE,
       payload: e.target.value,
     });
   };
-  const handleSend = () => {
-    const pay={
-        question:state.input_box,
-        answer:"12345"
+  const handleSend = (e) => {
+    console.log(e);
+
+    if (e.keyCode === 13 || e.type === "click") {
+      const pay = {
+        question: state.input_box,
+        answer: "12345",
+      };
+      dispatch({
+        type: ACTIONS.SEND_MSG,
+        payload: pay,
+      });
+      dispatch({
+        type: ACTIONS.ANSWER,
+        payload: "Answer",
+      });
     }
-    dispatch({
-      type: ACTIONS.SEND_MSG,
-      payload: pay,
-    });
-    dispatch({
-      type: ACTIONS.ANSWER,
-      payload: "Answer",
-    });
   };
   console.log("reducer state>>>", state);
   return (
@@ -34,18 +39,23 @@ export default function ChatMain() {
           {state.msg.length > 0 &&
             state.msg.map((val, index) => (
               <div
-                style={{ display: "flex", flexDirection: "column" }}
+                style={{ display: "flex", flexDirection: "column",gap:"2rem" }}
                 key={`msg_${index}`}
               >
-                <span className={styles.msg_bubble}>{val.question}</span>
-                <span className={styles.answer_bubble}>{val.answer}</span>
+                <div style={{border:"1p xsolid red"}}>
+                  <span className={styles.msg_bubble}>{val.question}</span>
+                </div>
+                <div>
+                  <span className={styles.answer_bubble}>{val.answer}</span>
+                </div>
               </div>
             ))}
         </>
       </div>
       <div className={styles.msg_main_div}>
         <input
-          onChange={handleSendmsg}
+          onKeyDown={(e) => handleSend(e)}
+          onChange={handleMsgChange}
           value={state.input_box}
           type="text"
           placeholder="Type your questions here"
